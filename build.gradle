@@ -1,33 +1,50 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.4.RELEASE'
-	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-	id 'java'
+    id "io.spring.dependency-management" version "1.0.9.RELEASE"
+    id "java"
+    id "groovy"
 }
 
-group = 'it.tarczynski'
-version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '11'
+group = "it.tarczynski"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "11"
 
 configurations {
-	compileOnly {
-		extendsFrom annotationProcessor
-	}
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
 }
 
-repositories {
-	mavenCentral()
-}
 
-dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok'
-	annotationProcessor 'org.projectlombok:lombok'
-	testImplementation('org.springframework.boot:spring-boot-starter-test') {
-		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-	}
-}
+subprojects {
+    apply plugin: "java"
+    apply plugin: "groovy"
 
-test {
-	useJUnitPlatform()
+    repositories {
+        mavenCentral()
+    }
+
+    configurations {
+        groovy
+        lombok
+        springWeb
+    }
+
+    dependencies {
+        groovy "org.codehaus.groovy:groovy-all:${groovyVersion}"
+
+        lombok "org.projectlombok:lombok:${lombokVersion}"
+        annotationProcessor configurations.lombok
+
+        springWeb "org.springframework.boot:spring-boot-starter-web"
+
+        testImplementation platform("org.spockframework:spock-bom:${spockBomVersion}")
+        testImplementation "org.spockframework:spock-core"
+        testImplementation "org.spockframework:spock-junit4"
+        testCompileOnly configurations.lombok
+        testAnnotationProcessor configurations.lombok
+    }
+
+    test {
+        useJUnitPlatform()
+    }
 }

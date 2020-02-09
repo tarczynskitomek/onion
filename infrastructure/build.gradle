@@ -1,0 +1,15 @@
+plugins {
+    id "org.springframework.boot" version "2.2.4.RELEASE"
+    id 'io.spring.dependency-management'
+}
+
+apply plugin: 'io.spring.dependency-management'
+
+dependencies {
+    implementation(project(':domain'))
+    implementation configurations.springWeb
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+}

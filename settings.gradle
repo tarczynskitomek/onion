@@ -1,2 +1,2 @@
 rootProject.name = 'onion'
-include('domain', 'infrastructure')
+include('domain', 'repository', 'infrastructure')

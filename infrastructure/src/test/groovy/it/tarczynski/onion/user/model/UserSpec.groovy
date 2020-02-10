@@ -1,11 +1,11 @@
 package it.tarczynski.onion.user.model
 
-import it.tarczynski.onion.user.policy.UserEmailPolicy
+import it.tarczynski.onion.user.policy.DefaultUserEmailPolicy
 import spock.lang.Specification
 
 class UserSpec extends Specification {
 
-    UserEmailPolicy emailPolicy = Mock(UserEmailPolicy)
+    DefaultUserEmailPolicy emailPolicy = Mock(DefaultUserEmailPolicy)
 
     def 'changeEmail, given already registered email, should throw an exception'() {
         given:

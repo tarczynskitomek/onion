@@ -27,6 +27,7 @@ subprojects {
         groovy
         lombok
         springWeb
+        springData
     }
 
     dependencies {
@@ -36,6 +37,7 @@ subprojects {
         annotationProcessor configurations.lombok
 
         springWeb "org.springframework.boot:spring-boot-starter-web"
+        springData "org.springframework.boot:spring-boot-starter-data-jdbc:${springBootVersion}"
 
         testImplementation platform("org.spockframework:spock-bom:${spockBomVersion}")
         testImplementation "org.spockframework:spock-core"

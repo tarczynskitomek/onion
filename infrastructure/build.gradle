@@ -1,15 +1,19 @@
 plugins {
     id "org.springframework.boot" version "2.2.4.RELEASE"
-    id 'io.spring.dependency-management'
+    id "io.spring.dependency-management"
 }
 
-apply plugin: 'io.spring.dependency-management'
+apply plugin: "io.spring.dependency-management"
 
 dependencies {
-    implementation(project(':domain'))
-    implementation configurations.springWeb
+    implementation(project(":domain"))
+    implementation(project(":repository"))
 
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    implementation configurations.springWeb
+    implementation configurations.lombok
+
+    testImplementation("org.springframework.boot:spring-boot-starter-test") {
+        exclude group: "org.junit.vintage", module: "junit-vintage-engine"
     }
+    runtime "org.hsqldb:hsqldb:2.3.2"
 }

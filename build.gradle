@@ -28,9 +28,13 @@ subprojects {
         lombok
         springWeb
         springData
+//        aspectjWeaver
     }
 
     dependencies {
+//        aspectjWeaver 'org.aspectj:aspectjweaver:1.9.5'
+//        aspectjWeaver 'org.aspectj:aspectjrt:1.9.5'
+
         groovy "org.codehaus.groovy:groovy-all:${groovyVersion}"
 
         lombok "org.projectlombok:lombok:${lombokVersion}"

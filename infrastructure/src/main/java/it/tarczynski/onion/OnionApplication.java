@@ -21,14 +21,14 @@ public class OnionApplication {
     ApplicationRunner applicationRunner(UserRepository userRepository,
                                         UserEmailPolicy emailPolicy) {
         return args -> {
-            User foo = User.builder().email("foo@bar.baz").name("Foo").build();
+            User foo = User.with("Foo", "foo@bar.baz");
             foo = userRepository.save(foo);
 
             foo.changeEmail("foo@bar.baz1", emailPolicy);
             System.out.println(userRepository.findByEmail("foo@bar.baz"));
 
             userRepository.save(foo);
-			System.out.println(userRepository.findByEmail("foo@bar.baz"));
+            System.out.println(userRepository.findByEmail("foo@bar.baz"));
         };
     }
 }
